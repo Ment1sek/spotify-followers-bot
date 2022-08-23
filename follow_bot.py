@@ -1,5 +1,5 @@
 try:
-    import requests, random, string
+    import requests, random, string, colorama
 except ImportError:
     input("Error while importing modules. Please install the modules in requirements.txt")
     exit()
