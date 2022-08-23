@@ -1,12 +1,12 @@
 from follow_bot import spotify
-import threading, os, time
+import threading, os, time, colorama
 
 lock = threading.Lock()
 counter = 0
 proxies = []
 proxy_counter = 0
-spotify_profile = str(input("Spotify Link or Username: "))
-threads = int(input("\nThreads: "))
+spotify_profile = str(input("\033[36mSpotify Link or Username:\033[31m "))
+threads = int(input("\n\033[39mThreads: "))
 
 def load_proxies():
     if not os.path.exists("proxies.txt"):
@@ -22,7 +22,7 @@ def load_proxies():
             time.sleep(10)
             os._exit(0)
 
-print("\n[1] Proxies\n[2] Proxyless")
+print("\n[1] \033[32mProxies\n\033[39m[2] \033[31mProxyless\033[39m")
 option = int(input("\n> "))
 if option == 1:
     load_proxies()
@@ -41,9 +41,9 @@ def thread_starter():
     result, error = obj.follow()
     if result == True:
         counter += 1
-        safe_print("Followed {}".format(counter))
+        safe_print("\033[32mFollowed\033[37m {}".format(counter))
     else:
-        safe_print(f"Error {error}")
+        safe_print(f"\033[31mError {error}\033[37m")
 
 while True:
     if threading.active_count() <= threads:
